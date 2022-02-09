@@ -1,0 +1,69 @@
+{
+  "requirements": [
+    {
+      "identifier": "test_fetch",
+      "description": "1 - Crie a função fetch",
+      "bonus": false
+    },
+    {
+      "identifier": "test_scrape_novidades",
+      "description": "2 - Crie a função scrape_novidades",
+      "bonus": false
+    },
+    {
+      "identifier": "test_scrape_next_page_link",
+      "description": "3 - Crie a função scrape_next_page_link",
+      "bonus": false
+    },
+    {
+      "identifier": "test_scrape_noticia",
+      "description": "4 - Crie a função scrape_noticia",
+      "bonus": false
+    },
+    {
+      "identifier": "test_get_tech_news",
+      "description": "5 - Crie a função get_tech_news para obter as notícias!",
+      "bonus": false
+    },
+    {
+      "identifier": "test_buscar_noticia_pelo_titulo",
+      "description": "6 - Crie a função search_by_title",
+      "bonus": false
+    },
+    {
+      "identifier": "test_buscar_noticia_pela_data",
+      "description": "7 - crie a função search_by_date",
+      "bonus": false
+    },
+    {
+      "identifier": "test_buscar_noticia_pela_fonte",
+      "description": "8 - Crie a função search_by_source",
+      "bonus": false
+    },
+    {
+      "identifier": "test_buscar_noticia_pela_categoria",
+      "description": "9 - Crie a função search_by_category",
+      "bonus": false
+    },
+    {
+      "identifier": "test_listar_as_top_cinco_noticias",
+      "description": "10 - Crie a função top_5_news",
+      "bonus": false
+    },
+    {
+      "identifier": "test_listar_as_top_cinco_categorias",
+      "description": "11 - Crie a função top_5_categories",
+      "bonus": false
+    },
+    {
+      "identifier": "test_analyzer_menu_basic",
+      "description": "12 - Crie a função analyzer_menu",
+      "bonus": true
+    },
+    {
+      "identifier": "test_analyzer_menu_functions",
+      "description": "13 - Implemente as funcionalidades do menu",
+      "bonus": true
+    }
+  ]
+}
