@@ -1,4 +1,3 @@
-import selectors
 import requests
 import time
 import parsel
