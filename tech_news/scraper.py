@@ -1,6 +1,9 @@
 import requests
 import time
 import parsel
+from tech_news.database import create_news
+
+NEWS_BASE_URL = "https://www.tecmundo.com.br/novidades"
 
 
 # Requisito 1
@@ -86,14 +89,13 @@ def scrape_noticia(html_content):
     getSharesCount = scrape_shares_count(selector)
 
     getCommentsCount = selector.css(
-            "nav.tec--toolbar button#js-comments-btn::attr(data-count)"
-        ).get()
+            "nav.tec--toolbar button#js-comments-btn::attr(data-count)").get()
     if getCommentsCount is None:
         getCommentsCount = 0
 
-    getSummary = "".join(
-        selector.css("div.tec--article__body p:first-child *::text").getall()
-    )
+    getSummary = selector.css(
+        ".tec--article__body > p:first-child *::text").getall()
+    refatoredGetSummary = "".join(getSummary)
 
     getSourcer = selector.css(
         "div.z--mb-16 a::text").getall()
@@ -108,19 +110,38 @@ def scrape_noticia(html_content):
         getCategoriesRefatored.append(category.strip())
 
     response = {
-        "url": getUrl,
-        "title": getTitle,
-        "timestamp": getTimestamp,
-        "writer": getWriter,
-        "shares_count": getSharesCount,
-        "comments_count": int(getCommentsCount),
-        "summary": getSummary,
-        "sources": getSourcerRefatored,
         "categories": getCategoriesRefatored,
+        "comments_count": int(getCommentsCount),
+        "shares_count": getSharesCount,
+        "sources": getSourcerRefatored,
+        "summary": refatoredGetSummary,
+        "timestamp": getTimestamp,
+        "title": getTitle,
+        "url": getUrl,
+        "writer": getWriter,
     }
     return response
 
-
 # Requisito 5
+
+
 def get_tech_news(amount):
     """Seu código deve vir aqui"""
+    url = "https://www.tecmundo.com.br/novidades"
+    news = []
+
+    while len(news) < amount:
+        for new in scrape_novidades(fetch(url)):
+            news_content = fetch(new)
+            result = scrape_noticia(news_content)
+            news.append(result)
+            if len(news) == amount:
+                break
+
+        url = scrape_next_page_link(fetch(url))
+        if len(news) == amount:
+            break
+
+    create_news(news)
+
+    return news
